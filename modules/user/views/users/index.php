@@ -1,6 +1,5 @@
 <?php
-$this->title = "User";
-
+use kartik\dialog\Dialog;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -46,10 +45,30 @@ $this->title = "Users";
         ?>
     </div>
 </div>
-
+<?php 
+    echo Dialog::widget();
+?>
 <?php $this->registerJs("
     $('.btnDelete').click(function(){
         let id = $(this).attr('data-id');
+        let url = '".Url::to(['/user/users/delete'])."';
+        krajeeDialog.confirm('Are you sure you want to proceed?', function (result) {
+            if (result) {
+                $.post(url,{id:id},function(res){
+                    new Noty({
+                            type: 'success',
+                            theme: 'bootstrap-v3',
+                            layout: 'topRight',
+                            text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
+                    }).show();
+                    setTimeout(function(){
+                        location.href=('".\yii\helpers\Url::to(['/user/users/index'])."');
+                    },800);
+                });
+            } else {
+                //alert('Oops! You declined!');
+            }
+        });
     });
 
 ");?>

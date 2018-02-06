@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'User', 'url' => ['/user/users/index']],
-            ['label' => 'Role', 'url' => ['/user/roles/index']],
+//            ['label' => 'Role', 'url' => ['/user/roles/index']],
             ['label' => 'Login', 'url' => ['/login']],
 //            Yii::$app->user->isGuest ? (
 //                ['label' => 'Login', 'url' => ['/site/login']]

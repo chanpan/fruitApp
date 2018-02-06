@@ -86,14 +86,17 @@ class UsersController extends Controller
         }
     }
  
-    public function actionDelete($id)
+    public function actionDelete()
     {
+        $id = isset($_POST["id"]) ? $_POST["id"] : "";
         $sqlUser = "DELETE FROM users WHERE id=:id";
         $sqlProfile = "DELETE FROM profiles WHERE user_id = :user_id";
         $user = Yii::$app->db->createCommand($sqlUser,[":id"=>$id])->execute();
         $profile = Yii::$app->db->createCommand($sqlProfile,[":user_id"=>$id])->execute();
+        
         if($user && $profile){
-            return $this->redirect(['index']);
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return ['status'=>'success','message'=>'delete success.'];
         }
         
     }
