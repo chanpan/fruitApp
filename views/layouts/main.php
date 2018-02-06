@@ -8,7 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+Yii::$app->name = "<i class='glyphicon glyphicon-record'></i> ระบบขนส่งผลไม้";
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -30,7 +30,7 @@ AppAsset::register($this);
                if(!empty(\app\modules\login\classes\Cookie::getCookie("logins"))){
                    $items = [
                         ['label' => 'User', 'url' => ['/user/users/index']],
-                        ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/']],
+                        ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/default/index']],
                         ['label' => 'Logout ('.\app\modules\user\classes\Identity::user()->loadUser()->getName().')', 'url' => ['/login/default/logout']],                    
                     ];
                }else{
@@ -54,20 +54,6 @@ AppAsset::register($this);
             echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => $items
-             
-//            Yii::$app->user->isGuest ? (
-//                ['label' => 'Login', 'url' => ['/site/login']]
-//            ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post')
-//                . Html::submitButton(
-//                    'Logout (' . Yii::$app->user->identity->username . ')',
-//                    ['class' => 'btn btn-link logout']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-//            )
-            ,
             ]);
             NavBar::end();
             ?>
@@ -96,3 +82,23 @@ AppAsset::register($this);
 </html>
 <?php $this->endPage() ?>
 
+<style>
+    
+    .navbar-inverse {
+        background-color: #ff1818;
+        border-color: #c31616;
+    }
+    .navbar-inverse .navbar-brand {
+        color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        color: #fff;
+        background-color: #e40505;
+    }
+    .navbar-inverse .navbar-toggle {
+        border-color: #d60000;
+    }
+</style>
