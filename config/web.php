@@ -20,6 +20,9 @@ $config = [
         'login' => [
             'class' => 'app\modules\login\Module',
         ],
+        'fruit' => [
+            'class' => 'app\modules\fruit\Module',
+        ],
     ],
     'components' => [
         'request' => [

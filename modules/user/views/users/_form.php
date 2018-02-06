@@ -29,7 +29,7 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'role')->radioList(['1'=>'admin','2'=>'user']) ?>
     <div class="form-group text-center">
         <a href="<?= yii\helpers\Url::to('/user/users/index') ?>" class="btn btn-default">Cancel</a>
-        <?= Html::submitButton("Save", ["class"=>'btn btn-primary'])?>
+        <?= Html::submitButton("<i class='glyphicon glyphicon-floppy-disk'></i> Save", ["class"=>'btn btn-primary'])?>
     </div>
 
 <?php ActiveForm::end(); ?>
@@ -72,3 +72,10 @@ echo $this->registerJs("
 
 ");
 ?>
+
+<?php $this->registerCss("
+div.required label.control-label:after {
+    content: \" *\";
+    color: red;
+}
+")?>

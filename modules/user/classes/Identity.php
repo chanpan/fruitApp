@@ -10,6 +10,7 @@ class Identity extends \yii\base\Component{
     public $tel = "";
     public $address = "";
     public $sex = "";
+    public $name = "";
     /**
      * @inheritdoc
      * @return Identity the newly created [[Identity]] instance.
@@ -46,6 +47,9 @@ class Identity extends \yii\base\Component{
     }
     public function getEmail() {
         return $this->email;
+    }
+    public function getName() {
+        return $this->fname ." ". $this->lname;
     }
     public function getFname() {
         return $this->fname;
