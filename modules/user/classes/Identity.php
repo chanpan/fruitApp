@@ -42,8 +42,10 @@ class Identity extends \yii\base\Component{
             $this->sex = $query["sex"];
             $this->role = $query["role"];
             $this->login = true;
-            return $this;
+            
         }
+        
+        return $this;
     }
     public function getId() {
         return $this->id;

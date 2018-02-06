@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function actionIndex()
     {
         
-        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+        if((!\app\modules\login\classes\CheckLogin::checkLogin()) or (\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";      
