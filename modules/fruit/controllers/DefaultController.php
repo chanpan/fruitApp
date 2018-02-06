@@ -8,15 +8,15 @@ use Yii;
 class DefaultController extends Controller {
 
     public function actionIndex() {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";
-        $count = \Yii::$app->db->createCommand('SELECT count(*) FROM fruits')->queryScalar();
-        $dataProvider = new \yii\data\SqlDataProvider([
-            'sql' => 'SELECT * FROM fruits WHERE fruit_name LIKE :fruit_name OR fruit_price LIKE :fruit_price ORDER BY  id DESC',
-            'params' => [":fruit_name" => "%$search%", ":fruit_price" => "%$search%"],
-            'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
+        $sql='SELECT * FROM fruits WHERE fruit_name LIKE :fruit_name OR fruit_price LIKE :fruit_price ORDER BY  id DESC';
+        $params = [":fruit_name" => "%$search%", ":fruit_price" => "%$search%"];
+        $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$query,
             'sort' => [
                 'attributes' => [
                     'fruit_name',
@@ -33,6 +33,9 @@ class DefaultController extends Controller {
     }
 
     public function actionCreate() {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
         $model = new \app\modules\fruit\models\Fruits();
         if ($model->load(\Yii::$app->request->post())) {
             $model->fruit_date = Date("Y-m-d H:i:s");
@@ -49,6 +52,9 @@ class DefaultController extends Controller {
     }
 
     public function actionUpdate($id) {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
         $model = \app\modules\fruit\models\Fruits::findOne($id);
         if ($model->load(\Yii::$app->request->post())) {
              \app\modules\utils\Response::Json();
@@ -65,6 +71,9 @@ class DefaultController extends Controller {
     
     public function actionDelete()
     {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
         $id = isset($_POST["id"]) ? $_POST["id"] : "";
         $sql = "DELETE FROM fruits WHERE id=:id";        
         $model = \Yii::$app->db->createCommand($sql,[":id"=>$id])->execute();

@@ -9,10 +9,6 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex()
     {
         $model = new \app\modules\login\models\Login();
@@ -38,5 +34,8 @@ class DefaultController extends Controller
     public function actionLogout(){
         \app\modules\login\classes\Cookie::deleteCookie("logins");
         return $this->redirect(["/site/index"]);
+    }
+    public function actionError(){
+        return $this->render("_error");
     }
 }

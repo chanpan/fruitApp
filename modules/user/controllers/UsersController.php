@@ -13,15 +13,17 @@ class UsersController extends Controller
   
     public function actionIndex()
     {
-        $search = isset($_GET["search"]) ? $_GET["search"] : "";
-        $count = Yii::$app->db->createCommand('SELECT count(*) FROM users')->queryScalar(); 
-        $dataProvider = new \yii\data\SqlDataProvider([
-           'sql'=> 'SELECT * FROM users as u INNER JOIN profiles as p ON u.id = p.user_id WHERE u.email LIKE :email',
-            'params'=>[":email"=>"%$search%"],
-            'totalCount'=>$count,
-            'pagination' => [
-                'pageSize' => 10,
-            ],
+        
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
+        $search = isset($_GET["search"]) ? $_GET["search"] : "";      
+        $sql='SELECT * FROM users as u INNER JOIN profiles as p ON u.id = p.user_id WHERE u.email LIKE :email';
+        $params = [":email"=>"%$search%"];
+        $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();
+         
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$query,
             'sort' => [
                 'attributes' => [
                     'email',
@@ -32,6 +34,7 @@ class UsersController extends Controller
                 ],
             ],
         ]);
+   
         return $this->render('index', [       
             'dataProvider' => $dataProvider,
         ]);
@@ -39,6 +42,10 @@ class UsersController extends Controller
     
     public function actionCreate()
     {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
+        
         $model = new Users();
         $profile = new Profiles();
         $role = \app\modules\user\models\Roles::find()->all();
@@ -67,6 +74,10 @@ class UsersController extends Controller
     
     public function actionUpdate($id)
     {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
+        
         $model = Users::findOne($id);
         $profile = Profiles::findOne($id);
          
@@ -75,8 +86,8 @@ class UsersController extends Controller
             $model->update_at = Date("Y-m-d H:i:s");
             if($model->save()){
                 $profile->save();
-                return ['status'=>'success'];
-            }
+                return ['status'=>'success', 'message'=>'เพิ่ม User สำเร็จ'];
+            }else{return ['status'=>'error', 'message'=>'Server Error'];}
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -88,6 +99,10 @@ class UsersController extends Controller
  
     public function actionDelete()
     {
+        if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
+            return $this->redirect(["/login/default/error"]);
+        }
+        
         $id = isset($_POST["id"]) ? $_POST["id"] : "";
         $sqlUser = "DELETE FROM users WHERE id=:id";
         $sqlProfile = "DELETE FROM profiles WHERE user_id = :user_id";
