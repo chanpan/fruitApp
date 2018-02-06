@@ -3,6 +3,7 @@ $this->title = "User";
 
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 $this->title = "Users";
 ?>
 
@@ -22,7 +23,23 @@ $this->title = "Users";
                     'fname',
                     'lname',
                     'tel',
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{update} {delete}',
+                        'contentOptions' => [
+                            'noWrap' => true,
+                            'width' => '135px',
+                            'text-align' => 'center'
+                        ],
+                        'buttons' => [
+                            'update' => function($url, $model, $key) {
+                                return "<a href='#' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+                            },
+                            'delete' => function($url, $model, $key) {
+                                return "<a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                            }
+                        ]
+                    ],
                 ],
                 
             ]);
