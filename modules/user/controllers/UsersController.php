@@ -53,8 +53,9 @@ class UsersController extends Controller
             if($model->save()){
                 $profile->user_id = $model->id;
                 $profile->save();
-                return ['status'=>'success'];
-            }
+                return ['status'=>'success', 'message'=>'เพิ่ม User สำเร็จ'];
+            }else{return ['status'=>'error', 'message'=>'Server Error'];}
+            
         } else {
             return $this->render('create', [
                 'model' => $model,

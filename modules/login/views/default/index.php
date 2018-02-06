@@ -39,7 +39,24 @@ echo $this->registerJs("
         
         let dataUrl = $('#reloadDiv').attr('data-url');
         $.post(url,formData).done(function(res){
-             console.warn(res);
+            if(res.status == 'success'){
+                new Noty({
+                        type: 'success',
+                        theme: 'bootstrap-v3',
+                        layout: 'topRight',
+                        text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
+                }).show();
+                setTimeout(function(){
+                     location.href=('".\yii\helpers\Url::to(['/site/index'])."');
+                },800);
+            }else{
+                new Noty({
+                        type: 'error',
+                        theme: 'bootstrap-v3',
+                        layout: 'topRight',
+                        text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
+                }).show();
+            }
   
         }).fail(function(err){
             console.log(err);

@@ -45,12 +45,22 @@ echo $this->registerJs("
         $.post(url,formData).done(function(res){
             console.log(res)
             if(res.status == 'success'){
-                ".\app\modules\utils\Noty::Success('Success.').";
+                new Noty({
+                        type: 'success',
+                        theme: 'bootstrap-v3',
+                        layout: 'topRight',
+                        text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
+                }).show();
                 setTimeout(function(){
                      location.href=('".\yii\helpers\Url::to(['/user/users/index'])."');
                 },800);
             }else{
-                ".\app\modules\utils\Noty::Error('Server Error.').";
+                new Noty({
+                        type: 'error',
+                        theme: 'bootstrap-v3',
+                        layout: 'topRight',
+                        text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
+                }).show();
             }
   
         }).fail(function(err){

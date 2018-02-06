@@ -22,13 +22,13 @@ class DefaultController extends Controller
             $sql="SELECT id FROM users WHERE (username=:username OR email = :email) AND password=:password";
             $params=[":username"=>$username, ":email"=>$password, ":password"=>$password];
             $query = \Yii::$app->db->createCommand($sql,$params)->queryOne();
+            $setCookie = \app\modules\login\classes\Cookie::setCookie("logins", $query);
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON; 
-            if(\app\modules\login\classes\Cookie::setCookie("logins", $query)){
-              return ["status"=>"success", "message"=>"Login Success"];
-            }else{
-              return ["status"=>"error", "message"=>"กรุณาตรวจสอบ Username หรือ Password"];  
+            if(!empty($query) && $setCookie){
+                return ["status"=>"success", "message"=>"Login Success"];
             }
-          exit();
+            return ["status"=>"error", "message"=>"กรุณาตรวจสอบ Username หรือ Password"]; 
+           
         }
            
         return $this->render('index', [
