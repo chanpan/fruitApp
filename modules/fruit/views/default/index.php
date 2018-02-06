@@ -71,8 +71,8 @@ $this->title = "รับซื้อผลไม้";
 <?php $this->registerJs("
     $('.btnDelete').click(function(){
         let id = $(this).attr('data-id');
-        let url = '".Url::to(['/user/users/delete'])."';
-        krajeeDialog.confirm('Are you sure you want to proceed?', function (result) {
+        let url = '".Url::to(['/fruit/default/delete'])."';
+        krajeeDialog.confirm('Confirm Delete?', function (result) {
             if (result) {
                 $.post(url,{id:id},function(res){
                     new Noty({
@@ -82,7 +82,7 @@ $this->title = "รับซื้อผลไม้";
                             text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
                     }).show();
                     setTimeout(function(){
-                        location.href=('".\yii\helpers\Url::to(['/user/users/index'])."');
+                        location.href=('".\yii\helpers\Url::to(['/fruit'])."');
                     },800);
                 });
             } else {

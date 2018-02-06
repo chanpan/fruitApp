@@ -52,7 +52,7 @@ $this->title = "Users";
     $('.btnDelete').click(function(){
         let id = $(this).attr('data-id');
         let url = '".Url::to(['/user/users/delete'])."';
-        krajeeDialog.confirm('Are you sure you want to proceed?', function (result) {
+        krajeeDialog.confirm('Confirm Delte?', function (result) {
             if (result) {
                 $.post(url,{id:id},function(res){
                     new Noty({

@@ -3,6 +3,7 @@
 namespace app\modules\fruit\controllers;
 
 use yii\web\Controller;
+use Yii;
 
 class DefaultController extends Controller {
 
@@ -60,6 +61,18 @@ class DefaultController extends Controller {
         return $this->render('update', [
                     'model' => $model,
         ]);
+    }
+    
+    public function actionDelete()
+    {
+        $id = isset($_POST["id"]) ? $_POST["id"] : "";
+        $sql = "DELETE FROM fruits WHERE id=:id";        
+        $model = \Yii::$app->db->createCommand($sql,[":id"=>$id])->execute();
+        if($model){
+            \app\modules\utils\Response::Json();
+            return ['status'=>'success','message'=>'delete success.'];
+        }
+        
     }
 
 }
