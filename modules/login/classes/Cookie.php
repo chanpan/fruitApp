@@ -19,4 +19,11 @@ class Cookie {
         $cookies = \Yii::$app->request->cookies;
         return $cookies->getValue($name);
     }
+    
+    public static function deleteCookie($name){
+        $cookies = \Yii::$app->response->cookies;
+        if($cookies->remove($name)){
+            return TRUE;
+        }
+    }
 }

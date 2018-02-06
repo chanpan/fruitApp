@@ -23,7 +23,7 @@ class DefaultController extends Controller
             $params=[":username"=>$username, ":email"=>$password, ":password"=>$password];
             $query = \Yii::$app->db->createCommand($sql,$params)->queryOne();
             $setCookie = \app\modules\login\classes\Cookie::setCookie("logins", $query);
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON; 
+            \app\modules\utils\Response::Json();
             if(!empty($query) && $setCookie){
                 return ["status"=>"success", "message"=>"Login Success"];
             }
@@ -34,5 +34,9 @@ class DefaultController extends Controller
         return $this->render('index', [
             'model'=>$model
         ]);
+    }
+    public function actionLogout(){
+        \app\modules\login\classes\Cookie::deleteCookie("logins");
+        return $this->redirect(["/site/index"]);
     }
 }

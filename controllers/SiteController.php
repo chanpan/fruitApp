@@ -16,8 +16,7 @@ class SiteController extends Controller
   
     public function actionIndex()
     {
-       echo \app\modules\user\classes\Identity::user()->loadUser()->getUsername();
-       
+       return $this->render('index');        
     }
 
     

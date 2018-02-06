@@ -27,25 +27,19 @@ AppAsset::register($this);
 
         <div class="wrap">
             <?php
-                $items = [
-                    ['label' => 'User', 'url' => ['/user/users/index']],
-//                    ['label' => 'Login', 'url' => ['/login']],
-                    !\app\modules\login\classes\Cookie::getCookie("logins") ? (
-                            ['label' => 'Login', 'url' => ['/login']]
-                        ) : 
+               if(!empty(\app\modules\login\classes\Cookie::getCookie("logins"))){
+                   $items = [
+                        ['label' => 'User', 'url' => ['/user/users/index']],
                         ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/']],
-                        (
-                            '<li>'
-                            . Html::beginForm(['/site/logout'], 'post')
-                            . Html::submitButton(
-                                'Logout (' . app\modules\user\classes\Identity::user()->loadUser()->getName() . ')',
-                                ['class' => 'btn btn-link logout']
-                            )
-                            . Html::endForm()
-                            . '</li>'
-                        )
-                     
-                ];
+                        ['label' => 'Logout ('.\app\modules\user\classes\Identity::user()->loadUser()->getName().')', 'url' => ['/login/default/logout']],                    
+                    ];
+               }else{
+                   $items = [
+                        ['label' => 'Login', 'url' => ['/login']],               
+                    ];
+               }
+                
+                
 
             if (!empty(\app\modules\login\classes\Cookie::getCookie("logins"))) {
                 

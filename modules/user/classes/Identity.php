@@ -11,6 +11,9 @@ class Identity extends \yii\base\Component{
     public $address = "";
     public $sex = "";
     public $name = "";
+    public $role = "";
+    
+    public $login = false;
     /**
      * @inheritdoc
      * @return Identity the newly created [[Identity]] instance.
@@ -28,16 +31,19 @@ class Identity extends \yii\base\Component{
         }
         $params = [":id"=>$id];
         $query = Yii::$app->db->createCommand($sql,$params)->queryOne();
-        $this->id = $query["id"];
-        $this->username = $query["username"];
-        $this->email = $query["email"];
-        $this->fname = $query["fname"];
-        $this->lname = $query["lname"];
-        $this->tel = $query["tel"];
-        $this->address = $query["address"];
-        $this->sex = $query["sex"];
-        
-        return $this;
+        if($query){
+            $this->id = $query["id"];
+            $this->username = $query["username"];
+            $this->email = $query["email"];
+            $this->fname = $query["fname"];
+            $this->lname = $query["lname"];
+            $this->tel = $query["tel"];
+            $this->address = $query["address"];
+            $this->sex = $query["sex"];
+            $this->role = $query["role"];
+            $this->login = true;
+            return $this;
+        }
     }
     public function getId() {
         return $this->id;
@@ -65,5 +71,11 @@ class Identity extends \yii\base\Component{
     }
     public function getSex() {
         return $this->sex;
+    }
+    public function getRole() {
+        return $this->role;
+    }
+    public function getLogin() {
+        return $this->login;
     }
 }
