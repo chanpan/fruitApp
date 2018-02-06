@@ -12,12 +12,15 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="users-update">
+<div class="panel panel-default">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <div class="panel-heading"><?= Html::encode($this->title) ?></div>
+    <div class="panel-body">
     <?= $this->render('_form', [
         'model' => $model,
+        'profile'=>$profile,
+        'role'=>$role
     ]) ?>
+    </div>    
 
 </div>

@@ -33,10 +33,10 @@ $this->title = "Users";
                         ],
                         'buttons' => [
                             'update' => function($url, $model, $key) {
-                                return "<a href='#' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+                                return "<a href='".Url::to(['/user/users/update','id'=>$model["id"]])."' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
                             },
                             'delete' => function($url, $model, $key) {
-                                return "<a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                                return "<a data-id='".$model['id']."' href='#' class='btn btn-danger btn-xs btnDelete'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
                             }
                         ]
                     ],
@@ -46,3 +46,10 @@ $this->title = "Users";
         ?>
     </div>
 </div>
+
+<?php $this->registerJs("
+    $('.btnDelete').click(function(){
+        let id = $(this).attr('data-id');
+    });
+
+");?>

@@ -15,8 +15,9 @@ use yii\bootstrap\ActiveForm;
     ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+<?php if($model->isNewRecord): ?>
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-    
+<?php endif; ?>    
     <?= $form->field($profile, 'fname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($profile, 'lname')->textInput(['maxlength' => true]) ?>
     <?= $form->field($profile, 'sex')->radioList(['1'=>'ชาย','2'=>'หญิง']) ?>
@@ -25,7 +26,7 @@ use yii\bootstrap\ActiveForm;
     ]) ?>
     <?= $form->field($profile, 'address')->textarea() ?>
     
-    <?= $form->field($model, 'role')->checkBoxList($role) ?>
+    <?= $form->field($model, 'role')->radioList(['1'=>'admin','2'=>'user']) ?>
     <div class="form-group text-center">
         <a href="<?= yii\helpers\Url::to('/user/users/index') ?>" class="btn btn-default">Cancel</a>
         <?= Html::submitButton("Save", ["class"=>'btn btn-primary'])?>
@@ -47,7 +48,7 @@ echo $this->registerJs("
                 ".\app\modules\utils\Noty::Success('Success.').";
                 setTimeout(function(){
                      location.href=('".\yii\helpers\Url::to(['/user/users/index'])."');
-                },500);
+                },800);
             }else{
                 ".\app\modules\utils\Noty::Error('Server Error.').";
             }

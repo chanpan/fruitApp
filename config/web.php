@@ -17,6 +17,9 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\Module',
         ],
+        'login' => [
+            'class' => 'app\modules\login\Module',
+        ],
     ],
     'components' => [
         'request' => [
