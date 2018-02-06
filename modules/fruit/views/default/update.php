@@ -2,7 +2,7 @@
 $this->title = "เพิ่มรายการซื้อผลไม้";
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading"><?= \yii\helpers\Html::encode($this->title) ?></div>
     <div class="panel-body">
         <?php

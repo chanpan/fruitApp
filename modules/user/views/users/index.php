@@ -6,7 +6,7 @@ use yii\helpers\Url;
 $this->title = "Users";
 ?>
 
-<div class="panel panel-default"> 
+<div class="panel panel-primary"> 
     <div class="panel-heading">
         <?= Html::encode($this->title)?>
     </div>

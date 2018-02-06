@@ -10,7 +10,7 @@ $this->title = Yii::t('app', 'Create Users');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="panel panel-default">
+<div class="panel panel-primary">
 
     <div class="panel-heading"><?= Html::encode($this->title) ?></div>
     <div class="panel-body">
