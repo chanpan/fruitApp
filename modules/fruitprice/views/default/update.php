@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-$this->title = Yii::t('app', 'แก้ไข พนักงาน');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'พนักงาน'), 'url' => ['index']];
+$this->title = Yii::t('app', 'แก้ไข ราคารับซื้อผลไม้');
+$this->params['breadcrumbs'][] = ['label' => 'ราคารับซื้อผลไม้', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="panel panel-primary">

@@ -18,7 +18,7 @@ $this->title="ราคารับซื้อผลไม้";
         </div>
     </div>
     <div class="panel-body">
-        <?php //$this->render('_search')?>
+        <?php echo $this->render('_search')?>
         <div class="table-responsive">
             <?php echo
             GridView::widget([

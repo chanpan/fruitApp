@@ -33,6 +33,7 @@ class ComposerStaticInit64ef05c9fe4d23466906586e3f2963af
         'k' => 
         array (
             'kartik\\dialog\\' => 14,
+            'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
         ),
         'c' => 
@@ -118,6 +119,10 @@ class ComposerStaticInit64ef05c9fe4d23466906586e3f2963af
         'kartik\\dialog\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
         ),
         'kartik\\base\\' => 
         array (

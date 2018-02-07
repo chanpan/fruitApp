@@ -1,5 +1,7 @@
 <?php
-$this->title = "เพิ่มรายการซื้อผลไม้";
+    $this->title = "เพิ่มรายการซื้อผลไม้";
+     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'รับซื้อผลไม้'), 'url' => ['index']];
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="panel panel-primary">

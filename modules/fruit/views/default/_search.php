@@ -16,5 +16,5 @@ use yii\helpers\Url;
     </div>
 </div>    
 <div class="clearfix"></div>
- 
+ <br/>
 <?php ActiveForm::end() ?>

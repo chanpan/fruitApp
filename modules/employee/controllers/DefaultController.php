@@ -71,7 +71,7 @@ class DefaultController extends Controller
         }
     }
     
-     public function actionDelete()
+    public function actionDelete()
     {
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
