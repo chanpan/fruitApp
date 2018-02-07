@@ -103,6 +103,13 @@ AppAsset::register($this);
         border-color: #e65328;
         background: #f16339f0;
     }
+    .footer {
+        height: 60px;
+        background-color: #191717;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+        color: #fff;
+    }
     @media (max-width: 767px){
         .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
             color: #ffffff;
