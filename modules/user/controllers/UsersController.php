@@ -13,7 +13,6 @@ class UsersController extends Controller
   
     public function actionIndex()
     {
-        
         if((!\app\modules\login\classes\CheckLogin::checkLogin()) or (\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
@@ -25,16 +24,9 @@ class UsersController extends Controller
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$query,
             'sort' => [
-                'attributes' => [
-                    'email',
-                    'username',
-                    'fname',
-                    'lname',
-                    'tel'
-                ],
+                'attributes' => ['email','username','fname','lname','tel'],
             ],
         ]);
-   
         return $this->render('index', [       
             'dataProvider' => $dataProvider,
         ]);

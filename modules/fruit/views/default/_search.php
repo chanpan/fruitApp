@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 <?= Html::input("text", "search", "", ["class" => "form-control", "placeholder" => "ค้นหา"]) ?>
         <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
+            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
         </span> 
 
     </div>

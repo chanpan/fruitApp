@@ -8,7 +8,14 @@ $this->title = "Users";
 
 <div class="panel panel-primary"> 
     <div class="panel-heading">
-        <?= Html::encode($this->title)?>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-title pull-left"> <?= Html::encode($this->title)?></div>
+            </div>
+            <div class="col-md-6 text-right">
+                <?= Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('app', 'เพิ่มรายการ'), ['create'], ['class' => 'btn btn-default btn-xs']) ?>
+            </div>
+        </div>
     </div>
     <div class="panel-body">
         <?= $this->render('_search')?>
@@ -20,8 +27,14 @@ $this->title = "Users";
                     ['class' => 'yii\grid\SerialColumn'],
                     'email:email',
                     'username',
-                    'fname',
-                    'lname',
+                    [
+                       'attribute'=>'fname',
+                       'label'=>'ชื่อนามสกุล',
+                       'value'=>function($model){
+                            return $model["fname"]." ".$model["lname"];
+                       }
+                    ],
+                    
                     'tel',
                     [
                         'class' => 'yii\grid\ActionColumn',
