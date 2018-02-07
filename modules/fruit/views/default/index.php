@@ -8,11 +8,19 @@ $this->title = "รับซื้อผลไม้";
 
 <div class="panel panel-primary"> 
     <div class="panel-heading">
-        <?= Html::encode($this->title)?>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-title pull-left"> <?= Html::encode($this->title)?></div>
+            </div>
+            <div class="col-md-6 text-right">
+                <?= Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('app', 'เพิ่มรายการ'), ['create'], ['class' => 'btn btn-default btn-xs']) ?>
+            </div>
+        </div>
     </div>
     <div class="panel-body">
         <?= $this->render('_search')?>
-        <?=
+        <div class="table-responsive">
+            <?=
             GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
@@ -63,6 +71,7 @@ $this->title = "รับซื้อผลไม้";
                 
             ]);
         ?>
+        </div>
     </div>
 </div>
 <?php 

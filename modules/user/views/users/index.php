@@ -12,7 +12,8 @@ $this->title = "Users";
     </div>
     <div class="panel-body">
         <?= $this->render('_search')?>
-        <?=
+        <div class="table-responsive">
+            <?=
             GridView::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => [
@@ -43,6 +44,7 @@ $this->title = "Users";
                 
             ]);
         ?>
+        </div>
     </div>
 </div>
 <?php 
