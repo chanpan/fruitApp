@@ -12,8 +12,8 @@ class DefaultController extends Controller
             return $this->redirect(["/login/default/error"]);
         }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";      
-        $sql='SELECT * FROM employees WHERE name LIKE :name ORDER BY id DESC';
-        $params = [":name"=>"%$search%"];
+        $sql='SELECT * FROM employees WHERE name LIKE :name OR cid LIKE :cid ORDER BY id DESC';
+        $params = [":name"=>"%$search%", ":cid"=>"%$search%"];
         $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();
          
         $dataProvider = new \yii\data\ArrayDataProvider([
