@@ -138,7 +138,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'ค่าใช้จ่ายในการขนส่ง', 'url' => ['/expenses/transport/index']],
                             ['label' => 'ค่าซ่อมบำรุงรถยนต์', 'url' => ['/expenses/car/index']],
-                            ['label' => 'ค่าจ้างพนักงาน', 'url' => ['/expenses/employee/index']],
+                            ['label' => 'ค่าจ้างพนักงาน', 'url' => ['/expenses/employee-wages/index']],
                         ],
                     ],
                     ['label' => 'ข้อมูลพนักงาน', 'url' => ['']],
