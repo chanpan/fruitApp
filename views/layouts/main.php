@@ -9,7 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-Yii::$app->name = "<i class='glyphicon glyphicon-record'></i> ระบบขนส่งผลไม้";
+Yii::$app->name = "<i class='glyphicon glyphicon-education'></i> ระบบขนส่งผลไม้";
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -21,16 +21,88 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        
+        
 <?php $this->head() ?>
     </head>
     <body>
+        <style>
+
+    .navbar-inverse {
+        background-color: #e65328;
+        border-color: #4e606f;
+        height:40px;
+    }
+    .navbar-inverse .navbar-brand {
+        color: #ffffff;
+        padding-left: 15px;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        color: #fff;
+        background-color: #1b1b1b;
+    }
+    .navbar-inverse .navbar-toggle {
+        border-color: #174e7d;
+    }
+    .navbar {
+        position: fixed;
+        min-height: 40px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+    }
+    .navbar-brand {
+        float: left;
+        height: 38px;
+        padding: 6px 0px;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    .navbar-nav {
+        /*margin: -5.5px -23px;*/
+    }
+    .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 14px;
+    }
+    .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 19px;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        color: #e65328;
+        background-color: #ffffff;
+        padding: 8px 20px 4px 20px;
+        margin-top: 3px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 12px;
+            font-family: sans-serif;
+    }
+    .navbar-toggle {
+        position: relative;
+        float: right;
+        padding: 9px 10px;
+        margin-top: 3px;
+        margin-right: 15px;
+        margin-bottom: 3px;
+        background-color: transparent;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+</style>
 <?php $this->beginBody() ?>
 
         <div class="wrap">
             <?php
             if (!empty(\app\modules\login\classes\Cookie::getCookie("logins"))) {
                 $items = [
-                    ['label' => 'User', 'url' => ['/user/users/index']],
+                    ['label' => '<i class="glyphicon glyphicon-user"></i> User', 'url' => ['/user/users/index']],
                     ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/default/index']],
                     ['label' => 'Logout (' . \app\modules\user\classes\Identity::user()->loadUser()->getName() . ')', 'url' => ['/login/default/logout']],
                 ];
@@ -53,8 +125,10 @@ AppAsset::register($this);
                 ],
             ]);
             echo Nav::widget([
+                
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $items
+                'items' => $items,
+                'encodeLabels' => false,
             ]);
             NavBar::end();
             ?>
@@ -83,72 +157,3 @@ AppAsset::register($this);
 </html>
 <?php $this->endPage() ?>
 
-<style>
-
-    .navbar-inverse {
-        background-color: #337ab7;
-        border-color: #4e606f;
-        height:40px;
-    }
-    .navbar-inverse .navbar-brand {
-        color: #ffffff;
-        padding-left: 15px;
-    }
-    .navbar-inverse .navbar-nav > li > a {
-        color: #ffffff;
-    }
-    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-        color: #fff;
-        background-color: #1b1b1b;
-    }
-    .navbar-inverse .navbar-toggle {
-        border-color: #174e7d;
-    }
-    .navbar {
-        position: fixed;
-        min-height: 40px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-    }
-    .navbar-brand {
-        float: left;
-        height: 50px;
-        padding: 6px 0px;
-        font-size: 20px;
-        line-height: 20px;
-    }
-    .navbar-nav {
-        /*margin: -5.5px -23px;*/
-    }
-    .navbar-nav > li > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 14px;
-    }
-    .navbar-nav > li > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 19px;
-    }
-    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-        color: #337ab7;
-        background-color: #ffffff;
-        padding: 8px 20px 4px 20px;
-        margin-top: 3px;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 12px;
-    }
-    .navbar-toggle {
-        position: relative;
-        float: right;
-        padding: 9px 10px;
-        margin-top: 3px;
-        margin-right: 15px;
-        margin-bottom: 3px;
-        background-color: transparent;
-        background-image: none;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-</style>
