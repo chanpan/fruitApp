@@ -95,6 +95,26 @@ AppAsset::register($this);
         border: 1px solid transparent;
         border-radius: 4px;
     }
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        color: #fff;
+        background-color: transparent;
+    }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #e65328;
+        background: #f16339f0;
+    }
+    @media (max-width: 767px){
+        .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+            color: #ffffff;
+            /* border-bottom: 1px solid #ffffff; */
+            padding: 11px;
+            margin-left: 12%;
+            border: 1px solid #ffffff;
+            margin-right: 1%;
+        }
+    }
+
+
 </style>
 <?php $this->beginBody() ?>
 
@@ -104,6 +124,18 @@ AppAsset::register($this);
                 $items = [
                     ['label' => '<i class="glyphicon glyphicon-user"></i> User', 'url' => ['/user/users/index']],
                     ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/default/index']],
+                    ['label' => 'ค่าใช้จ่าย',  
+                        'url' => ['#'],
+                        'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+                        'items' => [
+                            ['label' => 'ค่าใช้จ่ายในการขนส่ง', 'url' => '#'],
+                            ['label' => 'ค่าซ่อมบำรุงรถยนต์', 'url' => '#'],
+                            ['label' => 'ค่าจ้างพนักงาน', 'url' => '#'],
+                        ],
+                    ],
+                    ['label' => 'ข้อมูลพนักงาน', 'url' => ['']],
+                    ['label' => 'ประชาสัมพันธ์', 'url' => ['']],
+                    ['label' => 'ราคารับซื้อผลไม้', 'url' => ['']],
                     ['label' => 'Logout (' . \app\modules\user\classes\Identity::user()->loadUser()->getName() . ')', 'url' => ['/login/default/logout']],
                 ];
             } else {

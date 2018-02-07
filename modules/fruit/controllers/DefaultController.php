@@ -12,6 +12,7 @@ class DefaultController extends Controller {
             return $this->redirect(["/login/default/error"]);
         }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";
+        
         $sql='SELECT * FROM fruits WHERE fruit_name LIKE :fruit_name OR fruit_price LIKE :fruit_price ORDER BY  id DESC';
         $params = [":fruit_name" => "%$search%", ":fruit_price" => "%$search%"];
         $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();

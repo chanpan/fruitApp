@@ -11,6 +11,9 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
+        if(\app\modules\login\classes\CheckLogin::checkLogin()== TRUE){
+            return $this->redirect(["/user/users/index"]);
+        }
         $model = new \app\modules\login\models\Login();
         if ($model->load(\Yii::$app->request->post())) {
             $username =  $_POST["Login"]["username"];
