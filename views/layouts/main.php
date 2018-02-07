@@ -99,10 +99,7 @@ AppAsset::register($this);
         color: #fff;
         background-color: transparent;
     }
-    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: #e65328;
-        background: #f16339f0;
-    }
+    
     .footer {
         height: 60px;
         background-color: #191717;
@@ -118,6 +115,10 @@ AppAsset::register($this);
             margin-left: 12%;
             border: 1px solid #ffffff;
             margin-right: 1%;
+        }
+        .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+            border-color: #e65328;
+            background: #f16339f0;
         }
     }
 
@@ -135,14 +136,14 @@ AppAsset::register($this);
                         'url' => ['#'],
                         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                         'items' => [
-                            ['label' => 'ค่าใช้จ่ายในการขนส่ง', 'url' => '#'],
-                            ['label' => 'ค่าซ่อมบำรุงรถยนต์', 'url' => '#'],
-                            ['label' => 'ค่าจ้างพนักงาน', 'url' => '#'],
+                            ['label' => 'ค่าใช้จ่ายในการขนส่ง', 'url' => ['/expenses/transport/index']],
+                            ['label' => 'ค่าซ่อมบำรุงรถยนต์', 'url' => ['/expenses/car/index']],
+                            ['label' => 'ค่าจ้างพนักงาน', 'url' => ['/expenses/employee/index']],
                         ],
                     ],
                     ['label' => 'ข้อมูลพนักงาน', 'url' => ['']],
-                    ['label' => 'ประชาสัมพันธ์', 'url' => ['']],
                     ['label' => 'ราคารับซื้อผลไม้', 'url' => ['']],
+                    ['label' => 'ประชาสัมพันธ์', 'url' => ['']],                    
                     ['label' => 'Logout (' . \app\modules\user\classes\Identity::user()->loadUser()->getName() . ')', 'url' => ['/login/default/logout']],
                 ];
             } else {

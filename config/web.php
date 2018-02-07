@@ -23,6 +23,9 @@ $config = [
         'fruit' => [
             'class' => 'app\modules\fruit\Module',
         ],
+        'expenses' => [
+            'class' => 'app\modules\expenses\Module',
+        ],
     ],
     'components' => [
         'request' => [
