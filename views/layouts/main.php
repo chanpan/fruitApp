@@ -141,9 +141,9 @@ AppAsset::register($this);
                             ['label' => 'ค่าจ้างพนักงาน', 'url' => ['/expenses/employee-wages/index']],
                         ],
                     ],
-                    ['label' => 'ข้อมูลพนักงาน', 'url' => ['']],
-                    ['label' => 'ราคารับซื้อผลไม้', 'url' => ['']],
-                    ['label' => 'ประชาสัมพันธ์', 'url' => ['']],                    
+                    ['label' => 'ข้อมูลพนักงาน', 'url' => ['/employee/default/index']],
+                    ['label' => 'ราคารับซื้อผลไม้', 'url' => ['/fruitprice/default/index']],
+                    ['label' => 'ประชาสัมพันธ์', 'url' => ['/information/default/index']],                    
                     ['label' => 'Logout (' . \app\modules\user\classes\Identity::user()->loadUser()->getName() . ')', 'url' => ['/login/default/logout']],
                 ];
             } else {

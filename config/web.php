@@ -26,6 +26,15 @@ $config = [
         'expenses' => [
             'class' => 'app\modules\expenses\Module',
         ],
+        'employee' => [
+            'class' => 'app\modules\employee\Module',
+        ],
+        'information' => [
+            'class' => 'app\modules\information\Module',
+        ],
+        'fruitprice' => [
+            'class' => 'app\modules\fruitprice\Module',
+        ],
     ],
     'components' => [
         'request' => [

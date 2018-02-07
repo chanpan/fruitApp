@@ -1,30 +1,25 @@
 <?php
 
-namespace app\modules\user\controllers;
-
+namespace app\modules\employee\controllers;
 use Yii;
-use app\modules\user\models\Users;
-use app\modules\user\models\Profiles;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 
-class UsersController extends Controller
+class DefaultController extends Controller
 {
-  
-    public function actionIndex()
+     public function actionIndex()
     {
         if((!\app\modules\login\classes\CheckLogin::checkLogin()) or (\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";      
-        $sql='SELECT * FROM users as u INNER JOIN profiles as p ON u.id = p.user_id WHERE u.email LIKE :email';
-        $params = [":email"=>"%$search%"];
+        $sql='SELECT * FROM employees WHERE name LIKE :name ORDER BY id DESC';
+        $params = [":name"=>"%$search%"];
         $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();
          
         $dataProvider = new \yii\data\ArrayDataProvider([
             'allModels'=>$query,
             'sort' => [
-                'attributes' => ['email','username','fname','lname','tel'],
+                'attributes' => ['name','cid','tel','wage','unit'],
             ],
         ]);
         return $this->render('index', [       
@@ -37,24 +32,14 @@ class UsersController extends Controller
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
-        
-        $model = new Users();
-        $profile = new Profiles();
-        $role = \app\modules\user\models\Roles::find()->all();
-        $role = \yii\helpers\ArrayHelper::map($role,"id","role_name"); 
-
-        if ($model->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post()) && \yii\base\Model::validateMultiple([$model, $profile])) {
+        $model = new \app\modules\employee\models\Employees();
+        if ($model->load(Yii::$app->request->post()) ) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            $model->id = Time().rand(9,999);
-            $model->create_at = Date("Y-m-d H:i:s");
-            $model->role = $_POST["Users"]["role"];
-            $model->password = md5($_POST["Users"]["password"]);
             if($model->save()){
-                $profile->user_id = $model->id;
-                $profile->save();
                 return ['status'=>'success', 'message'=>'เพิ่ม User สำเร็จ'];
-            }else{return ['status'=>'error', 'message'=>'Server Error'];}
-            
+            }else{
+                return ['status'=>'error', 'message'=>'Server Error'];
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -69,44 +54,35 @@ class UsersController extends Controller
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
-        
-        $model = Users::findOne($id);
-        $profile = Profiles::findOne($id);
-         
-        if ($model->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post()) && \yii\base\Model::validateMultiple([$model, $profile])) {
+        $model = \app\modules\employee\models\Employees::findOne($id);
+        if ($model->load(Yii::$app->request->post()) ) {
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            $model->update_at = Date("Y-m-d H:i:s");
             if($model->save()){
-                $profile->save();
                 return ['status'=>'success', 'message'=>'เพิ่ม User สำเร็จ'];
-            }else{return ['status'=>'error', 'message'=>'Server Error'];}
+            }else{
+                return ['status'=>'error', 'message'=>'Server Error'];
+            }
         } else {
-            return $this->render('update', [
+            return $this->render('create', [
                 'model' => $model,
                 'profile'=>$profile,
-                 
+                'role'=>$role
             ]);
         }
     }
- 
-    public function actionDelete()
+    
+     public function actionDelete()
     {
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
         
         $id = isset($_POST["id"]) ? $_POST["id"] : "";
-        $sqlUser = "DELETE FROM users WHERE id=:id";
-        $sqlProfile = "DELETE FROM profiles WHERE user_id = :user_id";
-        $user = Yii::$app->db->createCommand($sqlUser,[":id"=>$id])->execute();
-        $profile = Yii::$app->db->createCommand($sqlProfile,[":user_id"=>$id])->execute();
-        
-        if($user && $profile){
+        $model = \app\modules\employee\models\Employees::findOne($id);
+        if($model->delete()){
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return ['status'=>'success','message'=>'delete success.'];
         }
         
     }
- 
-    
 }
