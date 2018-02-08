@@ -1,6 +1,6 @@
 <?php
-$this->title = "แก้ไขรายการค่าจ้าง";
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'รายการค่าจ้างพนักงาน'), 'url' => ['index']];
+$this->title = "แก้ไข ค่าซ่อมบำรุงรถยนต์";
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'ค่าซ่อมบำรุงรถยนต์'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

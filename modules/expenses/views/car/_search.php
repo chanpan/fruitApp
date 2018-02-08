@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 ?>
-<?php ActiveForm::begin(['action' => Url::to(['/expenses/employee-wages/index']), 'method' => 'get', 'layout' => 'horizontal']); ?>
+<?php ActiveForm::begin(['action' => Url::to(['/expenses/car/index']), 'method' => 'get', 'layout' => 'horizontal']); ?>
 <div class="col-md-6 col-md-offset-6" style="padding:0;">
     <div class="input-group">
 

@@ -31,15 +31,7 @@ class CarController extends Controller{
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
-        $model = new \app\modules\expenses\models\Employeewages();
-        $model->date_st = Date('Y-m-d');
-        
-        $date = Date('Y-m-d'); /* + 1 day*/
-        $date1 = str_replace('-', '/', $date);
-        $tomorrow = date('Y-m-d',strtotime($date1 . "+1 days"));
-        $model->date_en =$tomorrow;
-        
-
+        $model = new \app\modules\expenses\models\Car();
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
             if ($model->save()) {
@@ -57,7 +49,7 @@ class CarController extends Controller{
         if((!\app\modules\login\classes\CheckLogin::checkLogin())or(\app\modules\login\classes\CheckLogin::checkLogin() && !\app\modules\login\classes\CheckLogin::checkAdmin())){
             return $this->redirect(["/login/default/error"]);
         }
-        $model = \app\modules\expenses\models\Employeewages::findOne($id);
+        $model = \app\modules\expenses\models\Car::findOne($id);
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
             if ($model->save()) {
@@ -77,7 +69,7 @@ class CarController extends Controller{
             return $this->redirect(["/login/default/error"]);
         }
         $id = isset($_POST["id"]) ? $_POST["id"] : "";
-        $model = \app\modules\expenses\models\Employeewages::findOne($id);
+        $model = \app\modules\expenses\models\Car::findOne($id);
         if($model->delete()){
             \app\modules\utils\Response::Json();
             return ['status'=>'success','message'=>'delete success.'];

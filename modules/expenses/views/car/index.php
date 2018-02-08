@@ -58,7 +58,7 @@ $this->title="ค่าซ่อมบำรุงรถยนต์";
                         ],
                         'buttons' => [
                             'update' => function($url, $model, $key) {
-                                return "<a href='".Url::to(['/expenses/employee-wages/update','id'=>$model["id"]])."' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+                                return "<a href='".Url::to(['/expenses/car/update','id'=>$model["id"]])."' class='btn btn-info btn-xs'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
                             },
                             'delete' => function($url, $model, $key) {
                                 return "<a data-id='".$model['id']."' href='#' class='btn btn-danger btn-xs btnDelete'><i class='glyphicon glyphicon-trash'></i> Delete</a>";

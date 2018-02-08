@@ -29,7 +29,7 @@ class Car extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price'], 'required'],
+            [['price','list','description'], 'required'],
             [['price'], 'integer'],
             [['date_st'], 'safe'],
             [['description'], 'string'],
