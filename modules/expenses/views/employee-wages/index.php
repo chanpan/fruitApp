@@ -38,6 +38,20 @@ $this->title="ค่าจ้างพนักงาน";
                         return number_format($model["emp_price"], 2);
                        }
                     ],
+                    [
+                       'attribute'=>'emp_price',
+                       'label'=>'จากวันที่',
+                       'value'=>function($model){
+                        return $model["date_st"];
+                       }
+                    ],
+                    [
+                       'attribute'=>'emp_price',
+                       'label'=>'ถึงวันที่',
+                       'value'=>function($model){
+                        return $model["date_en"];
+                       }
+                    ],        
                     
                
                     [

@@ -21,110 +21,166 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        
-        
-<?php $this->head() ?>
+
+
+        <?php $this->head() ?>
     </head>
     <body>
         <style>
 
-    .navbar-inverse {
-        background-color: #e65328;
-        border-color: #4e606f;
-        height:40px;
-    }
-    .navbar-inverse .navbar-brand {
-        color: #ffffff;
-        padding-left: 15px;
-    }
-    .navbar-inverse .navbar-nav > li > a {
-        color: #ffffff;
-    }
-    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-        color: #fff;
-        background-color: #1b1b1b;
-    }
-    .navbar-inverse .navbar-toggle {
-        border-color: #174e7d;
-    }
-    .navbar {
-        position: fixed;
-        min-height: 40px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-    }
-    .navbar-brand {
-        float: left;
-        height: 38px;
-        padding: 6px 0px;
-        font-size: 20px;
-        line-height: 20px;
-    }
-    .navbar-nav {
-        /*margin: -5.5px -23px;*/
-    }
-    .navbar-nav > li > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 14px;
-    }
-    .navbar-nav > li > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 19px;
-    }
-    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-        color: #e65328;
-        background-color: #ffffff;
-        padding: 8px 20px 4px 20px;
-        margin-top: 3px;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 12px;
-            font-family: sans-serif;
-    }
-    .navbar-toggle {
-        position: relative;
-        float: right;
-        padding: 9px 10px;
-        margin-top: 3px;
-        margin-right: 15px;
-        margin-bottom: 3px;
-        background-color: transparent;
-        background-image: none;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-        color: #fff;
-        background-color: transparent;
-    }
-    
-    .footer {
-        height: 60px;
-        background-color: #191717;
-        border-top: 1px solid #ddd;
-        padding-top: 20px;
-        color: #fff;
-    }
-    @media (max-width: 767px){
-        .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-            color: #ffffff;
-            /* border-bottom: 1px solid #ffffff; */
-            padding: 11px;
-            margin-left: 12%;
-            border: 1px solid #ffffff;
-            margin-right: 1%;
-        }
-        .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-            border-color: #e65328;
-            background: #f16339f0;
-        }
-    }
+            .navbar-inverse {
+                background-color: #2494F2;
+                border-color: #4e606f;
+                height:40px;
+            }
+            .navbar-inverse .navbar-brand {
+                color: #ffffff;
+                padding-left: 15px;
+            }
+            .navbar-inverse .navbar-nav > li > a {
+                color: #ffffff;
+            }
+            .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+                color: #fff;
+                background-color: #1b1b1b;
+            }
+            .navbar-inverse .navbar-toggle {
+                border-color: #174e7d;
+            }
+            .navbar {
+                position: fixed;
+                min-height: 40px;
+                margin-bottom: 20px;
+                border: 1px solid transparent;
+            }
+            .navbar-brand {
+                float: left;
+                height: 38px;
+                padding: 6px 0px;
+                font-size: 20px;
+                line-height: 20px;
+            }
+            .navbar-nav {
+                /*margin: -5.5px -23px;*/
+            }
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                line-height: 14px;
+            }
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                line-height: 19px;
+            }
+            .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+                color: #2494f2;
+                background-color: #ffffff;
+                padding: 8px 20px 4px 20px;
+                margin-top: 3px;
+                border-radius: 4px;
+                font-weight: bold;
+                font-size: 12px;
+                font-family: sans-serif;
+            }
+            .navbar-toggle {
+                position: relative;
+                float: right;
+                padding: 9px 10px;
+                margin-top: 3px;
+                margin-right: 15px;
+                margin-bottom: 3px;
+                background-color: transparent;
+                background-image: none;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+            .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+                color: #fff;
+                background-color: transparent;
+            }
 
-
-</style>
-<?php $this->beginBody() ?>
+            .footer {
+                height: 60px;
+                background-color: #1F2126;
+                border-top: 1px solid #ddd;
+                padding-top: 20px;
+                color: #fff;
+            }
+            @media (max-width: 767px){
+                .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+                    color: #ffffff;
+                    /* border-bottom: 1px solid #ffffff; */
+                    padding: 11px;
+                    margin-left: 12%;
+                    border: 1px solid #ffffff;
+                    margin-right: 1%;
+                }
+                .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+                    border-color: #2494f2;
+                    background: #2494f2;
+                }
+            }
+            .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+                background-color: #0e89f1;
+            }
+            .btn-danger {
+                color: #fff;
+                background-color: #ff0808;
+                border-color: #dc1912;
+            }
+            .btn-info {
+                color: #fff;
+                background-color: #04c2fb;
+                border-color: #46b8da;
+            }
+            .btn-primary {
+                color: #fff;
+                background-color: #007fec;
+                border-color: #0471d0;
+            }
+            .panel-primary > .panel-heading {
+                color: #fff;
+                background-color: #0889f5;
+                border-color: #0089ff;
+            }
+            .panel-primary {
+                border-color: #0889f5;
+            }
+            .dropdown-menu > li > a {
+                display: block;
+                padding: 3px 20px;
+                clear: both;
+                font-weight: normal;
+                line-height: 1.42857143;
+                color: #fff;
+                white-space: nowrap;
+            }
+            .dropdown-menu {
+                color: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                display: none;
+                float: left;
+                min-width: 160px;
+                padding: 5px 0;
+                margin: 2px 0 0;
+                font-size: 14px;
+                text-align: left;
+                list-style: none;
+                background-color: #2494f2;
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                border: 1px solid #ccc;
+                border: 1px solid rgba(0, 0, 0, .15);
+                border-radius: 4px;
+                -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            }
+        </style>
+        <?php $this->beginBody() ?>
 
         <div class="wrap">
             <?php
@@ -132,7 +188,7 @@ AppAsset::register($this);
                 $items = [
                     ['label' => '<i class="glyphicon glyphicon-user"></i> User', 'url' => ['/user/users/index']],
                     ['label' => 'รับซื้อผลไม้', 'url' => ['/fruit/default/index']],
-                    ['label' => 'ค่าใช้จ่าย',  
+                    ['label' => 'ค่าใช้จ่าย',
                         'url' => ['#'],
                         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                         'items' => [
@@ -143,7 +199,7 @@ AppAsset::register($this);
                     ],
                     ['label' => 'ข้อมูลพนักงาน', 'url' => ['/employee/default/index']],
                     ['label' => 'ราคารับซื้อผลไม้', 'url' => ['/fruitprice/default/index']],
-                    ['label' => 'ประชาสัมพันธ์', 'url' => ['/information/default/index']],                    
+                    ['label' => 'ประชาสัมพันธ์', 'url' => ['/information/default/index']],
                     ['label' => 'Logout (' . \app\modules\user\classes\Identity::user()->loadUser()->getName() . ')', 'url' => ['/login/default/logout']],
                 ];
             } else {
@@ -165,7 +221,6 @@ AppAsset::register($this);
                 ],
             ]);
             echo Nav::widget([
-                
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $items,
                 'encodeLabels' => false,
@@ -180,7 +235,7 @@ AppAsset::register($this);
                 ])
                 ?>
                 <?= Alert::widget() ?>
-<?= $content ?>
+                <?= $content ?>
             </div>
         </div>
 
@@ -192,7 +247,7 @@ AppAsset::register($this);
             </div>
         </footer>
 
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
