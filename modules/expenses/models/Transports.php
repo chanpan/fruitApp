@@ -5,7 +5,7 @@ namespace app\modules\expenses\models;
 use Yii;
 
 /**
- * This is the model class for table "car".
+ * This is the model class for table "transports".
  *
  * @property int $id
  * @property string $list รายการ
@@ -13,14 +13,14 @@ use Yii;
  * @property string $date_st วันที่
  * @property string $description รายละเอียด
  */
-class Car extends \yii\db\ActiveRecord
+class Transports extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'cars';
+        return 'transports';
     }
 
     /**
@@ -29,7 +29,7 @@ class Car extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price','list','description'], 'required'],
+            [['price'], 'required'],
             [['price'], 'integer'],
             [['date_st'], 'safe'],
             [['description'], 'string'],

@@ -10,7 +10,7 @@ $this->title="ค่าซ่อมบำรุงรถยนต์";
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel-title pull-left"> <?= Html::encode($this->title)?></div>
+                <div class="panel-title pull-left"><i class="glyphicon glyphicon-th-large"></i> <?= Html::encode($this->title)?></div>
             </div>
             <div class="col-md-6 text-right">
                 <?= Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('app', 'เพิ่มรายการ'), ['create'], ['class' => 'btn btn-default btn-xs']) ?>
@@ -78,7 +78,7 @@ $this->title="ค่าซ่อมบำรุงรถยนต์";
 <?php $this->registerJs("
     $('.btnDelete').click(function(){
         let id = $(this).attr('data-id');
-        let url = '".Url::to(['/expenses/employee-wages/delete'])."';
+        let url = '".Url::to(['/expenses/car/delete'])."';
         krajeeDialog.confirm('Confirm Delte?', function (result) {
             if (result) {
                 $.post(url,{id:id},function(res){
@@ -89,7 +89,7 @@ $this->title="ค่าซ่อมบำรุงรถยนต์";
                             text: res.message+'<span class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</span>'
                     }).show();
                     setTimeout(function(){
-                        location.href=('".\yii\helpers\Url::to(['/expenses/employee-wages/index'])."');
+                        location.href=('".\yii\helpers\Url::to(['/expenses/car/index'])."');
                     },800);
                 });
             } else {

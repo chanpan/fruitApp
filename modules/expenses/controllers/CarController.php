@@ -9,7 +9,7 @@ class CarController extends Controller{
             return $this->redirect(["/login/default/error"]);
         }
         $search = isset($_GET["search"]) ? $_GET["search"] : "";
-        $sql='SELECT * FROM car WHERE list LIKE :name';
+        $sql='SELECT * FROM cars WHERE list LIKE :name';
         $params = [":name" => "%$search%"];
         $query = \Yii::$app->db->createCommand($sql,$params)->queryAll();
         $dataProvider = new \yii\data\ArrayDataProvider([
@@ -34,8 +34,9 @@ class CarController extends Controller{
         $model = new \app\modules\expenses\models\Car();
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
+            $model->date_st = Date("Y-m-d");
             if ($model->save()) {
-                return ["status" => 'success', 'message' => 'เพิ่มรายการรับซื้อผลไม้เเล้ว'];
+                return ["status" => 'success', 'message' => 'Success'];
             }else{
                 return ["status"=>'error', 'message'=>"Server error!"];
             }
@@ -52,8 +53,9 @@ class CarController extends Controller{
         $model = \app\modules\expenses\models\Car::findOne($id);
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
+            $model->date_st = Date("Y-m-d");
             if ($model->save()) {
-                return ["status" => 'success', 'message' => 'เพิ่มรายการรับซื้อผลไม้เเล้ว'];
+                return ["status" => 'success', 'message' => 'Success'];
             }else{
                 return ["status"=>'error', 'message'=>"Server error!"];
             }

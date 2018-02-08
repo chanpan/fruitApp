@@ -46,7 +46,7 @@ class EmployeeWagesController extends Controller{
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
             if ($model->save()) {
-                return ["status" => 'success', 'message' => 'เพิ่มรายการรับซื้อผลไม้เเล้ว'];
+                return ["status" => 'success', 'message' => 'Success'];
             }else{
                 return ["status"=>'error', 'message'=>"Server error!"];
             }
@@ -64,7 +64,7 @@ class EmployeeWagesController extends Controller{
         if ($model->load(\Yii::$app->request->post())) {
             \app\modules\utils\Response::Json();
             if ($model->save()) {
-                return ["status" => 'success', 'message' => 'เพิ่มรายการรับซื้อผลไม้เเล้ว'];
+                return ["status" => 'success', 'message' => 'Success'];
             }else{
                 return ["status"=>'error', 'message'=>"Server error!"];
             }

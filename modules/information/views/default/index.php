@@ -10,7 +10,7 @@ $this->title="ข่าวประชาสัมพันธ์";
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel-title pull-left"> <?= Html::encode($this->title)?></div>
+                <div class="panel-title pull-left"><i class="glyphicon glyphicon-th-large"></i> <?= Html::encode($this->title)?></div>
             </div>
             <div class="col-md-6 text-right">
                 <?= Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('app', 'เพิ่มรายการ'), ['create'], ['class' => 'btn btn-default btn-xs']) ?>
