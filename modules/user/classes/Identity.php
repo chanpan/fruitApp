@@ -24,14 +24,15 @@ class Identity extends \yii\base\Component{
     public function loadUser() {
         $id = \app\modules\login\classes\Cookie::getCookie("logins")["id"];
         $sql="SELECT * FROM users as u INNER JOIN profiles as p  ON u.id=p.user_id WHERE  u.id =:id";
-        if($query["sex"] == 1){
-            $query["sex"] = 'ชาย';
-        }else{
-            $query["sex"] = 'หญิง';
-        }
+        
         $params = [":id"=>$id];
         $query = Yii::$app->db->createCommand($sql,$params)->queryOne();
         if($query){
+            if($query["sex"] == 1){
+                $query["sex"] = 'ชาย';
+            }else{
+                $query["sex"] = 'หญิง';
+            }
             $this->id = $query["id"];
             $this->username = $query["username"];
             $this->email = $query["email"];
